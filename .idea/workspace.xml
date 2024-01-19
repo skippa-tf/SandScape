@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9956ad2-942f-4a15-89d0-425f3c508f02" name="Changes" comment="rename game">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Particle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SandGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f9956ad2-942f-4a15-89d0-425f3c508f02" name="Changes" comment="update maven dependencies (add javafx)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SandGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SandGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +23,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -100,12 +100,21 @@
       <option name="project" value="LOCAL" />
       <updated>1705466213974</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update maven dependencies (add javafx)">
+      <option name="closed" value="true" />
+      <created>1705688974751</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1705688974751</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init commit" />
     <MESSAGE value="rename game" />
-    <option name="LAST_COMMIT_MESSAGE" value="rename game" />
+    <MESSAGE value="update maven dependencies (add javafx)" />
+    <option name="LAST_COMMIT_MESSAGE" value="update maven dependencies (add javafx)" />
   </component>
 </project>

@@ -8,13 +8,12 @@ public class SandGame {
 
 
     public static void main(String[] args) {
-        Application.launch(args);
-        game.run();
+
 
     }
     public SandGame(int width, int height) {
         grid = new Particle[width][height];
-        window = new Display(width, height);
+        //window = new Display(width, height);
 
     }
 
