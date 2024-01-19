@@ -1,11 +1,13 @@
-import javax.swing.*;
+import javafx.*;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Display {
-    public static void main(String[] args){
-        JFrame window = new JFrame();
-        window.setTitle("Falling Sand Game");
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setSize(1280, 720);
-        window.setVisible(true);
+
+public class Display extends Application {
+
+    @Override
+    public void start(Stage primarystage){
+
     }
 }
