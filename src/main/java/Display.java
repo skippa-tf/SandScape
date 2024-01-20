@@ -27,14 +27,12 @@ public class Display extends Application {
         // Assuming 'pane' is your GridPane
         GridPane pane = new GridPane();
         pane.setGridLinesVisible(false);
-        pane.setHgap(50); // Horizontal gap between grid cells
+        pane.setHgap(20); // Horizontal gap between grid cells
         pane.setVgap(0); // Vertical gap between grid cells
         for (int i = 0; i < 5; i++) {
             ColumnConstraints column = new ColumnConstraints();
             column.setPercentWidth(20);
-            if (i < 4) {
-                column.setHalignment(HPos.LEFT);
-            } else {
+            if (i == 5) {
                 column.setHalignment(HPos.RIGHT);
             }
             pane.getColumnConstraints().add(column);
@@ -42,49 +40,48 @@ public class Display extends Application {
 
         // Create our main functionality buttons
         Button clear = new Button("CLEAR");
-        pane.add(clear, 4, 0);
+        pane.add(clear, 4, 2);
         GridPane.setHalignment(clear, HPos.RIGHT);
 
         Button start = new Button("START");
-        pane.add(start, 4, 1);
+        pane.add(start, 4, 0);
         GridPane.setHalignment(start, HPos.RIGHT);
 
 
         Button pause = new Button("PAUSE");
-        pane.add(pause, 4, 2);
+        pane.add(pause, 4, 1);
         GridPane.setHalignment(pause, HPos.RIGHT);
 
         // Radio buttons for material selection
         ToggleGroup tg = new ToggleGroup();
-        RadioButton sand = new RadioButton("Sand");
-        sand.setToggleGroup(tg);
-        pane.add(sand, 1, 0);
-        GridPane.setHalignment(sand, HPos.LEFT);
-
-        RadioButton water = new RadioButton("Water");
-        water.setToggleGroup(tg);
-        pane.add(water, 2, 0);
-        GridPane.setHalignment(water, HPos.LEFT);
 
         RadioButton stone = new RadioButton("Stone");
         stone.setToggleGroup(tg);
-        pane.add(stone, 3, 0);
-        GridPane.setHalignment(stone, HPos.LEFT);
+        stone.setSelected(true);
+        pane.add(stone, 1, 0);
 
-        RadioButton wood = new RadioButton("Wood");
+        RadioButton sand = new RadioButton("Sand");
+        sand.setToggleGroup(tg);
+        pane.add(sand, 2, 0);
+
+        RadioButton water = new RadioButton("Water");
+        water.setToggleGroup(tg);
+        pane.add(water, 3, 0);
+
+
+
+        RadioButton wood = new RadioButton("TBD");
         wood.setToggleGroup(tg);
         pane.add(wood, 1, 1);
-        GridPane.setHalignment(wood, HPos.LEFT);
 
-        RadioButton fire = new RadioButton("Fire");
+        RadioButton fire = new RadioButton("TBD");
         fire.setToggleGroup(tg);
         pane.add(fire, 2, 1);
-        GridPane.setHalignment(fire, HPos.LEFT);
 
         RadioButton tbd = new RadioButton("TBD");
         tbd.setToggleGroup(tg);
         pane.add(tbd, 3, 1);
-        GridPane.setHalignment(tbd, HPos.LEFT);
+
 
         // Slider for stroke size selection
         Slider strokeSlider = new Slider(0, 100, 25);

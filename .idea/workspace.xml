@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9956ad2-942f-4a15-89d0-425f3c508f02" name="Changes" comment="create javafx scene for controls; add controls for scene">
+    <list default="true" id="f9956ad2-942f-4a15-89d0-425f3c508f02" name="Changes" comment="properly align controls into correct positions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SandGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SandGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +165,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705720476882</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="properly align controls into correct positions">
+      <option name="closed" value="true" />
+      <created>1705728437130</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1705728437130</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -176,6 +183,7 @@
     <MESSAGE value="Update readme.md;" />
     <MESSAGE value="Delete duplicate file" />
     <MESSAGE value="create javafx scene for controls; add controls for scene" />
-    <option name="LAST_COMMIT_MESSAGE" value="create javafx scene for controls; add controls for scene" />
+    <MESSAGE value="properly align controls into correct positions" />
+    <option name="LAST_COMMIT_MESSAGE" value="properly align controls into correct positions" />
   </component>
 </project>
