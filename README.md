@@ -35,5 +35,7 @@ My idea for layout looks like this:
 |                                                                             |
 |                                                                             |
 └-----------------------------------------------------------------------------┘
-
 ```
+
+
+JavaFX is required to run this project. Add it as a dependency in your IDE.

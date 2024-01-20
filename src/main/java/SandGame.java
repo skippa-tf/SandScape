@@ -1,5 +1,7 @@
-import java.awt.*;
-import java.util.ArrayList;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class SandGame {
     private static final int WIDTH = 800;
@@ -8,8 +10,8 @@ public class SandGame {
 
 
     public static void main(String[] args) {
-
-
+        Display mainWindow = new Display();
+        mainWindow.start(new Stage());
     }
     public SandGame(int width, int height) {
         grid = new Particle[width][height];
