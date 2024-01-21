@@ -63,14 +63,41 @@ public class Display extends Application {
         stone.setToggleGroup(tg);
         stone.setSelected(true);
         controlsPane.add(stone, 1, 0);
+        stone.setOnAction(
+                new EventHandler<>() {
+                    @Override
+                    public void handle(ActionEvent e) {
+                        brushType = 0;
+                        System.out.println("stone selected");
+                    }
+                }
+        );
 
         RadioButton sand = new RadioButton("Sand");
         sand.setToggleGroup(tg);
         controlsPane.add(sand, 2, 0);
+        sand.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        brushType = 1;
+                        System.out.println("sand selected");
+                    }
+                }
+        );
 
         RadioButton water = new RadioButton("Water");
         water.setToggleGroup(tg);
         controlsPane.add(water, 3, 0);
+        water.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        brushType = 2;
+                        System.out.println("water selected");
+                    }
+                }
+        );
 
         // Todo implement these materials properly
         RadioButton wood = new RadioButton("TBD");

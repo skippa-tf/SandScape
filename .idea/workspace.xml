@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9956ad2-942f-4a15-89d0-425f3c508f02" name="Changes" comment="minor alignment adjustments">
+    <list default="true" id="f9956ad2-942f-4a15-89d0-425f3c508f02" name="Changes" comment="disabled unused buttons">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Display.java" afterDir="false" />
     </list>
@@ -58,7 +58,7 @@
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="Display" />
-      <module name="FallingSandGame" />
+      <module name="SandScape" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\JavaFX\javafx-sdk-21.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -77,7 +77,6 @@
             <option name="goals">
               <list />
             </option>
-            <option name="multimoduleDir" />
             <option name="pomFileName" />
             <option name="profilesMap">
               <map />
@@ -182,7 +181,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705728929882</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="disabled unused buttons">
+      <option name="closed" value="true" />
+      <created>1705803306424</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1705803306424</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -194,6 +201,7 @@
     <MESSAGE value="create javafx scene for controls; add controls for scene" />
     <MESSAGE value="properly align controls into correct positions" />
     <MESSAGE value="minor alignment adjustments" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor alignment adjustments" />
+    <MESSAGE value="disabled unused buttons" />
+    <option name="LAST_COMMIT_MESSAGE" value="disabled unused buttons" />
   </component>
 </project>
