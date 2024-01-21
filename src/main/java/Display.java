@@ -72,17 +72,19 @@ public class Display extends Application {
         water.setToggleGroup(tg);
         controlsPane.add(water, 3, 0);
 
-
-
+        // Todo implement these materials properly
         RadioButton wood = new RadioButton("TBD");
+        wood.setDisable(true);
         wood.setToggleGroup(tg);
         controlsPane.add(wood, 1, 1);
 
         RadioButton fire = new RadioButton("TBD");
+        fire.setDisable(true);
         fire.setToggleGroup(tg);
         controlsPane.add(fire, 2, 1);
 
         RadioButton tbd = new RadioButton("TBD");
+        tbd.setDisable(true);
         tbd.setToggleGroup(tg);
         controlsPane.add(tbd, 3, 1);
 
