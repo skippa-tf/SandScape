@@ -3,13 +3,18 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.canvas.*;
+import javafx.scene.paint.*;
 
 import javafx.beans.value.ChangeListener;
 
@@ -30,7 +35,7 @@ public class Display extends Application {
 
         // Assuming 'pane' is your GridPane
         GridPane controlsPane = new GridPane();
-        controlsPane.setGridLinesVisible(false);
+        controlsPane.setGridLinesVisible(true);
         controlsPane.setHgap(20); // Horizontal gap between grid cells
         controlsPane.setVgap(0); // Vertical gap between grid cells
         for (int i = 0; i < 5; i++) {
@@ -137,6 +142,14 @@ public class Display extends Application {
             }
         });
 
+
+        // Create a black painting canvas.
+        Canvas canvas = new Canvas(WIDTH, HEIGHT); // TODO Make it scale to the window properly, otherwise the pixels will continue to fall off the screen, to the bottom of the unseen canvas.
+        canvas.setStyle("-fx-background-color: black");
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        controlsPane.add(canvas, 0, 4, 4, 1);
 
 
         Scene scene = new Scene (controlsPane, WIDTH, HEIGHT);
