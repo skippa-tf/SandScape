@@ -19,6 +19,7 @@ public class Display extends Application {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private int brushSize = 25;
+    private int brushType = 0; // 0 = stone; 1 = sand; 2 = water
     public static void main(String[] args) {
         Application.launch(args);
     }
