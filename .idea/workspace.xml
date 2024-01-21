@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9956ad2-942f-4a15-89d0-425f3c508f02" name="Changes" comment="add handlers for brush changes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f9956ad2-942f-4a15-89d0-425f3c508f02" name="Changes" comment="add black drawing canvas;">
       <change beforePath="$PROJECT_DIR$/src/main/java/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Display.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -197,7 +196,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705813296371</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add black drawing canvas;">
+      <option name="closed" value="true" />
+      <created>1705880964322</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1705880964322</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -211,6 +218,7 @@
     <MESSAGE value="minor alignment adjustments" />
     <MESSAGE value="disabled unused buttons" />
     <MESSAGE value="add handlers for brush changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="add handlers for brush changes" />
+    <MESSAGE value="add black drawing canvas;" />
+    <option name="LAST_COMMIT_MESSAGE" value="add black drawing canvas;" />
   </component>
 </project>

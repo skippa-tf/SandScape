@@ -41,9 +41,6 @@ public class Display extends Application {
         for (int i = 0; i < 5; i++) {
             ColumnConstraints column = new ColumnConstraints();
             column.setPercentWidth(20);
-            if (i == 5) {
-                column.setHalignment(HPos.RIGHT);
-            }
             controlsPane.getColumnConstraints().add(column);
         }
 
@@ -71,7 +68,7 @@ public class Display extends Application {
         stone.setOnAction(
                 new EventHandler<>() {
                     @Override
-                    public void handle(ActionEvent e) {
+                    public void handle(ActionEvent actionEvent) {
                         brushType = 0;
                         System.out.println("stone selected");
                     }
@@ -82,7 +79,7 @@ public class Display extends Application {
         sand.setToggleGroup(tg);
         controlsPane.add(sand, 2, 0);
         sand.setOnAction(
-                new EventHandler<ActionEvent>() {
+                new EventHandler<>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         brushType = 1;
@@ -95,7 +92,7 @@ public class Display extends Application {
         water.setToggleGroup(tg);
         controlsPane.add(water, 3, 0);
         water.setOnAction(
-                new EventHandler<ActionEvent>() {
+                new EventHandler<>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
                         brushType = 2;
@@ -127,10 +124,9 @@ public class Display extends Application {
         GridPane.setHalignment(strokeSliderLabel, HPos.CENTER);
 
         // Slider for stroke size selection
-        Slider strokeSlider = new Slider(0, 100, brushSize);
+        Slider strokeSlider = new Slider(0, 50, brushSize);
         strokeSlider.setShowTickLabels(true);
-        strokeSlider.setMajorTickUnit(25);
-        strokeSlider.setMinorTickCount(5);
+        strokeSlider.setMajorTickUnit(10);
         strokeSlider.setShowTickMarks(true);
         controlsPane.add(strokeSlider, 0, 1);
         strokeSlider.valueProperty().addListener(new ChangeListener<Number>() {
