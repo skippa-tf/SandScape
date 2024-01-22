@@ -6,6 +6,7 @@ import javafx.geometry.HPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
@@ -24,7 +25,7 @@ public class Display extends Application {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private int brushSize = 25;
-    private int brushType = 0; // 0 = stone; 1 = sand; 2 = water
+    private Color brushType = Color.LIGHTGRAY;
     public static void main(String[] args) {
         Application.launch(args);
     }
@@ -35,7 +36,7 @@ public class Display extends Application {
 
         // Assuming 'pane' is your GridPane
         GridPane controlsPane = new GridPane();
-        controlsPane.setGridLinesVisible(true);
+        controlsPane.setGridLinesVisible(false);
         controlsPane.setHgap(20); // Horizontal gap between grid cells
         controlsPane.setVgap(0); // Vertical gap between grid cells
         for (int i = 0; i < 5; i++) {
@@ -69,7 +70,7 @@ public class Display extends Application {
                 new EventHandler<>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        brushType = 0;
+                        brushType = Color.LIGHTGRAY;
                         System.out.println("stone selected");
                     }
                 }
@@ -82,7 +83,7 @@ public class Display extends Application {
                 new EventHandler<>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        brushType = 1;
+                        brushType = Color.SANDYBROWN;
                         System.out.println("sand selected");
                     }
                 }
@@ -95,7 +96,7 @@ public class Display extends Application {
                 new EventHandler<>() {
                     @Override
                     public void handle(ActionEvent actionEvent) {
-                        brushType = 2;
+                        brushType = Color.MEDIUMBLUE;
                         System.out.println("water selected");
                     }
                 }
@@ -131,7 +132,7 @@ public class Display extends Application {
         controlsPane.add(strokeSlider, 0, 1);
         strokeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             // I got this code from: https://stackoverflow.com/a/22781451/23110483
-            // I don't know wtf is going on here.
+            // I don't know exactly what is going on here.
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
                 brushSize = newValue.intValue();
                 strokeSliderLabel.setText("Stroke Size: " + brushSize);
@@ -145,6 +146,17 @@ public class Display extends Application {
         GraphicsContext gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        canvas.setOnMouseDragged(
+                new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent mouseEvent) {
+                        double x = mouseEvent.getX();
+                        double y = mouseEvent.getY();
+                        gc.setFill(brushType);
+                        gc.fillOval(x, y, brushSize, brushSize);
+                    }
+                }
+        );
         controlsPane.add(canvas, 0, 4, 4, 1);
 
 
