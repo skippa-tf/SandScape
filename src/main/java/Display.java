@@ -5,11 +5,14 @@ import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
@@ -18,7 +21,9 @@ import javafx.scene.canvas.*;
 import javafx.scene.paint.*;
 
 import javafx.beans.value.ChangeListener;
+import org.w3c.dom.events.Event;
 
+import java.awt.*;
 
 
 public class Display extends Application {
@@ -26,13 +31,16 @@ public class Display extends Application {
     private static final int HEIGHT = 600;
     private int brushSize = 25;
     private Color brushType = Color.LIGHTGRAY;
+    private Canvas canvas;
+    private GraphicsContext gc;
+
     public static void main(String[] args) {
         Application.launch(args);
     }
 
 
     @Override
-    public void start(Stage primaryStage){
+    public void start(Stage primaryStage) {
 
         // Assuming 'pane' is your GridPane
         GridPane controlsPane = new GridPane();
@@ -49,6 +57,16 @@ public class Display extends Application {
         Button clear = new Button("CLEAR");
         controlsPane.add(clear, 4, 2);
         GridPane.setHalignment(clear, HPos.RIGHT);
+        clear.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent actionEvent) {
+                        GraphicsContext gc = canvas.getGraphicsContext2D();
+                        gc.setFill(Color.BLACK);
+                        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+                    }
+                }
+        );
 
         Button start = new Button("START");
         controlsPane.add(start, 4, 0);
@@ -141,37 +159,37 @@ public class Display extends Application {
 
 
         // Create a black painting canvas.
-        Canvas canvas = new Canvas(WIDTH, HEIGHT); // TODO Make it scale to the window properly, otherwise the pixels will continue to fall off the screen, to the bottom of the unseen canvas.
+        canvas = new Canvas(WIDTH, HEIGHT); // TODO Make it scale to the window properly, otherwise the pixels will continue to fall off the screen, to the bottom of the unseen canvas.
         canvas.setStyle("-fx-background-color: black");
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc = canvas.getGraphicsContext2D();
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        canvas.setOnMouseDragged(
-                new EventHandler<MouseEvent>() {
-                    @Override
-                    public void handle(MouseEvent mouseEvent) {
-                        double x = mouseEvent.getX();
-                        double y = mouseEvent.getY();
-                        gc.setFill(brushType);
-                        gc.fillOval(x, y, brushSize, brushSize);
-                    }
-                }
-        );
+        // Set the same EventHandler for both "clicking" the mouse and "dragging" the mouse.
+        canvas.setOnMousePressed(new drawOnCursor());
+        canvas.setOnMouseDragged(new drawOnCursor());
         controlsPane.add(canvas, 0, 4, 4, 1);
 
 
-        Scene scene = new Scene (controlsPane, WIDTH, HEIGHT);
+        Scene scene = new Scene(controlsPane, WIDTH, HEIGHT);
         primaryStage.setTitle("SandScape");
         primaryStage.setScene(scene);
         primaryStage.show();
 
     }
 
-    public double getBrushSize(){
+    public double getBrushSize() {
         return brushSize;
     }
 
 
-
-
+    class drawOnCursor implements EventHandler<MouseEvent> {
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            // Set the center to the mouse.
+            double x = mouseEvent.getX() - brushSize / 2;
+            double y = mouseEvent.getY() - brushSize / 2;
+            gc.setFill(brushType);
+            gc.fillOval(x, y, brushSize, brushSize);
+        }
+    }
 }
