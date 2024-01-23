@@ -181,6 +181,10 @@ public class Display extends Application {
         return brushSize;
     }
 
+    public GraphicsContext getCanvasGraphicsContext(){
+        return canvas.getGraphicsContext2D();
+    }
+
 
     class drawOnCursor implements EventHandler<MouseEvent> {
         @Override
