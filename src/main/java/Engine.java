@@ -19,22 +19,31 @@ public class Engine {
 
 
 
-    public void drawToGrid(int x, int y, Particle p){
-        if (x < grid.length && y < grid[x].length && grid[x][y] == null){
-            p.setRow(x);
-            p.setCol(y);
-            grid[x][y] = p;
+    public void drawToGrid(int row, int col, int particleType){
+        Particle p = new Particle(null, null, 0, 0);
+        switch (particleType){
+            case 0:
+                p = new Stone(row, col);
+                break;
+            case 1:
+                p = new Sand(row, col);
+                break;
+            case 2:
+                p = new Water(row, col);
+                break;
+        }
+        if (row < grid.length && col < grid[row].length && grid[row][col] == null){
+            grid[row][col] = p;
             gridChanged = true;
         }
     }
 
     private void update() {
         gridChanged = false;
-        display.drawBlack();
+        //display.drawBlack();
         for (Particle[] row : grid){
             for (Particle p :  row){
-                if (p != null) {
-                    System.out.println("inside loop");
+                if (p != null && p.hasMoved()) {
                     p.update(grid);
                     display.drawParticle(p);
                 }
@@ -53,7 +62,6 @@ public class Engine {
             step += 100;
             if (gridChanged) {
                 System.out.println("drawing black");
-
                 update();
             }
 

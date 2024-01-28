@@ -12,12 +12,15 @@ public class Particle {
     private int oldRow;
     private int oldCol;
     private Color color;
+    private boolean hasMoved = true;
 
     public static final String WATER = "WATER";
     public static final String SAND = "SAND";
     public static final String STONE = "STONE";
 
-    public Particle(String name, Color c) {
+    public Particle(String name, Color c, int row, int col) {
+        this.row = row;
+        this.col = col;
         this.name = name;
         this.color = c;
         totalParticles++;
@@ -41,11 +44,13 @@ public class Particle {
             if (moveDiag) {
                 row++;
             }
-
         }
         if (row != oldRow || col != oldCol) {
+            hasMoved = true;
             grid[row][col] = this;
             grid[oldRow][oldCol] = null;
+        } else {
+            hasMoved = false;
         }
     }
 
@@ -79,7 +84,9 @@ public class Particle {
         return oldCol;
     }
 
-
+    public boolean hasMoved() {
+        return hasMoved;
+    }
 
     public String getName() {
         return name;
@@ -97,8 +104,8 @@ public class Particle {
 class Water extends Particle {
     private static int particleCount = 0;
 
-    public Water() {
-        super(WATER, Color.BLUE);
+    public Water(int row, int col) {
+        super(WATER, Color.BLUE, row, col);
         particleCount++;
     }
 
@@ -110,8 +117,8 @@ class Water extends Particle {
 class Sand extends Particle {
     private static int particleCount = 0;
 
-    public Sand() {
-        super(SAND, Color.LIGHTGOLDENRODYELLOW);
+    public Sand(int row, int col) {
+        super(SAND, Color.LIGHTGOLDENRODYELLOW, row, col);
         particleCount++;
     }
 
@@ -123,8 +130,8 @@ class Sand extends Particle {
 class Stone extends Particle {
     private static int particleCount = 0;
 
-    public Stone() {
-        super(STONE, Color.LIGHTGRAY);
+    public Stone(int row, int col) {
+        super(STONE, Color.LIGHTGRAY, row, col);
         particleCount++;
     }
 
