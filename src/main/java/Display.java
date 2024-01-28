@@ -1,44 +1,45 @@
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.*;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.PixelWriter;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.canvas.*;
-import javafx.scene.paint.*;
-
-import javafx.beans.value.ChangeListener;
-import org.w3c.dom.events.Event;
-
-import java.awt.*;
 
 
 public class Display extends Application {
-    private static final int WIDTH = 800;
-    private static final int HEIGHT = 600;
-    private int brushSize = 25;
-    private Color brushType = Color.LIGHTGRAY;
+    protected static final int WIDTH = 800;
+    protected static final int HEIGHT = 600;
+    private int brushSize = 1;
+    private Particle brushType = new Stone();
     private Canvas canvas;
     private GraphicsContext gc;
+    private PixelWriter pw;
+    private static Engine engine;
 
-    public static void main(String[] args) {
-        Application.launch(args);
+    public Display(){}
+    public static void setEngine(Engine e){
+        engine = e;
     }
 
-
+    public void initDisplay(){
+        engine.setDisplay(this);
+        new Thread(engine::run).start(); // run the engine on a different thread from the ui.
+    }
     @Override
     public void start(Stage primaryStage) {
 
@@ -47,6 +48,7 @@ public class Display extends Application {
         controlsPane.setGridLinesVisible(false);
         controlsPane.setHgap(20); // Horizontal gap between grid cells
         controlsPane.setVgap(0); // Vertical gap between grid cells
+        // Setup column widths
         for (int i = 0; i < 5; i++) {
             ColumnConstraints column = new ColumnConstraints();
             column.setPercentWidth(20);
@@ -58,20 +60,16 @@ public class Display extends Application {
         controlsPane.add(clear, 4, 2);
         GridPane.setHalignment(clear, HPos.RIGHT);
         clear.setOnAction(
-                new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        GraphicsContext gc = canvas.getGraphicsContext2D();
-                        gc.setFill(Color.BLACK);
-                        gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
-                    }
+                actionEvent -> {
+                    GraphicsContext gc = canvas.getGraphicsContext2D();
+                    gc.setFill(Color.BLACK);
+                    gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
                 }
         );
 
         Button start = new Button("START");
         controlsPane.add(start, 4, 0);
         GridPane.setHalignment(start, HPos.RIGHT);
-
 
         Button pause = new Button("PAUSE");
         controlsPane.add(pause, 4, 1);
@@ -85,12 +83,9 @@ public class Display extends Application {
         stone.setSelected(true);
         controlsPane.add(stone, 1, 0);
         stone.setOnAction(
-                new EventHandler<>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        brushType = Color.LIGHTGRAY;
-                        System.out.println("stone selected");
-                    }
+                actionEvent -> {
+                    brushType = new Stone();
+
                 }
         );
 
@@ -98,12 +93,9 @@ public class Display extends Application {
         sand.setToggleGroup(tg);
         controlsPane.add(sand, 2, 0);
         sand.setOnAction(
-                new EventHandler<>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        brushType = Color.SANDYBROWN;
-                        System.out.println("sand selected");
-                    }
+                actionEvent -> {
+                    brushType = new Sand();
+
                 }
         );
 
@@ -111,12 +103,9 @@ public class Display extends Application {
         water.setToggleGroup(tg);
         controlsPane.add(water, 3, 0);
         water.setOnAction(
-                new EventHandler<>() {
-                    @Override
-                    public void handle(ActionEvent actionEvent) {
-                        brushType = Color.MEDIUMBLUE;
-                        System.out.println("water selected");
-                    }
+                actionEvent -> {
+                    brushType = new Water();
+
                 }
         );
 
@@ -159,9 +148,13 @@ public class Display extends Application {
 
 
         // Create a black painting canvas.
-        canvas = new Canvas(WIDTH, HEIGHT); // TODO Make it scale to the window properly, otherwise the pixels will continue to fall off the screen, to the bottom of the unseen canvas.
+        // TODO Make it scale to the window properly, otherwise the pixels will continue to fall off the screen, to the bottom of the unseen canvas.
+        canvas = new Canvas(WIDTH, HEIGHT);
         canvas.setStyle("-fx-background-color: black");
         gc = canvas.getGraphicsContext2D();
+        // pw is used to draw individual pixels.
+        pw = gc.getPixelWriter();
+
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
         // Set the same EventHandler for both "clicking" the mouse and "dragging" the mouse.
@@ -175,6 +168,22 @@ public class Display extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        // Startup game engine after JavaFX application is set up.
+        Platform.runLater(() -> {
+            initDisplay();
+        });
+    }
+    public void drawBlack(){
+        if (gc != null) {
+            gc.setFill(Color.BLACK);
+            gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+        }
+    }
+
+    public void drawParticle(Particle p){
+        System.out.println("drawing particle: " + p);
+        pw.setColor(p.getOldRow(), p.getOldCol(), Color.BLACK); // set the previous spot back to black.
+        pw.setColor(p.getRow(), p.getCol(), p.getColor());
     }
 
     public double getBrushSize() {
@@ -185,15 +194,20 @@ public class Display extends Application {
         return canvas.getGraphicsContext2D();
     }
 
+    public PixelWriter getPw() {
+        return pw;
+    }
+
 
     class drawOnCursor implements EventHandler<MouseEvent> {
         @Override
         public void handle(MouseEvent mouseEvent) {
             // Set the center to the mouse.
-            double x = mouseEvent.getX() - brushSize / 2;
-            double y = mouseEvent.getY() - brushSize / 2;
-            gc.setFill(brushType);
-            gc.fillOval(x, y, brushSize, brushSize);
+            int x = (int)(mouseEvent.getX() -  brushSize);
+            int y = (int)(mouseEvent.getY() -  brushSize);
+            System.out.println("drawing at x:" + x + " y:" + y);
+            engine.drawToGrid(x, y, brushType);
+
         }
     }
 }

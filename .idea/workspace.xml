@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9956ad2-942f-4a15-89d0-425f3c508f02" name="Changes" comment="add black drawing canvas;">
+    <list default="true" id="f9956ad2-942f-4a15-89d0-425f3c508f02" name="Changes" comment="minor control adjustments">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Engine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Particle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Particle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SandGame.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,11 +57,18 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Display">
-    <configuration name="Display" type="Application" factoryName="Application">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Engine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Engine" />
+      <module name="SandScape" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="Display" />
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="SandScape" />
       <option name="VM_PARAMETERS" value="--module-path &quot;C:\Program Files\JavaFX\javafx-sdk-21.0.2\lib&quot; --add-modules javafx.controls,javafx.fxml" />
       <method v="2">
@@ -91,12 +103,14 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.Display" />
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Engine" />
       <item itemvalue="Maven.SandScape" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Display" />
+        <item itemvalue="Application.Engine" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -204,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705880964322</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="minor control adjustments">
+      <option name="closed" value="true" />
+      <created>1705881374482</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1705881374482</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -219,6 +241,17 @@
     <MESSAGE value="disabled unused buttons" />
     <MESSAGE value="add handlers for brush changes" />
     <MESSAGE value="add black drawing canvas;" />
-    <option name="LAST_COMMIT_MESSAGE" value="add black drawing canvas;" />
+    <MESSAGE value="minor control adjustments" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor control adjustments" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
