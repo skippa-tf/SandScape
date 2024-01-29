@@ -12,7 +12,7 @@ public class Particle {
     private int oldRow;
     private int oldCol;
     private Color color;
-    private boolean hasMoved = true;
+    boolean hasMoved = true;
 
     public static final String WATER = "WATER";
     public static final String SAND = "SAND";
@@ -99,6 +99,11 @@ public class Particle {
     public Color getColor() {
         return color;
     }
+
+    @Override
+    public String toString() {
+        return name + " at virtual row,col" + "(" + row + ", " + col + ")";
+    }
 }
 
 class Water extends Particle {
@@ -137,6 +142,7 @@ class Stone extends Particle {
 
     @Override
     public void update(Particle[][] grid) {
+        super.hasMoved = false;
         return;
     }
 

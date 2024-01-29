@@ -22,8 +22,8 @@ import javafx.stage.Stage;
 
 
 public class Display extends Application {
-    protected static final int WIDTH = 800;
-    protected static final int HEIGHT = 600;
+    protected static final int WIDTH = 500;
+    protected static final int HEIGHT = 500;
     private int brushSize = 1;
     private int particleType = 0; // 0: Stone, 1: Sand, 2: Water
     private Canvas canvas;
@@ -123,6 +123,8 @@ public class Display extends Application {
         tbd.setToggleGroup(tg);
         controlsPane.add(tbd, 3, 1);
 
+        /*
+           REMOVED THE SLIDER.
         // Slider label && Text Alignment
         Text strokeSliderLabel = new Text("Stroke Size: " + brushSize);
         strokeSliderLabel.setTextAlignment(TextAlignment.CENTER);
@@ -143,6 +145,8 @@ public class Display extends Application {
                 strokeSliderLabel.setText("Stroke Size: " + brushSize);
             }
         });
+        */
+
 
 
         // Create a black painting canvas.
@@ -162,6 +166,7 @@ public class Display extends Application {
 
 
         Scene scene = new Scene(controlsPane, WIDTH, HEIGHT);
+
         primaryStage.setTitle("SandScape");
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -171,6 +176,7 @@ public class Display extends Application {
             initDisplay();
         });
     }
+
     public void drawBlack(){
         if (gc != null) {
             gc.setFill(Color.BLACK);
@@ -178,9 +184,20 @@ public class Display extends Application {
         }
     }
 
+    public void drawBlackParticle(int row, int col){
+        int cellSize = engine.getCellSize();
+        gc.setFill(Color.BLACK);
+        gc.fillRect(col * cellSize, row * cellSize, cellSize, cellSize);
+    }
+
     public void drawParticle(Particle p){
-        pw.setColor(p.getOldCol(), p.getOldRow(), Color.BLACK); // set the previous spot back to black.
-        pw.setColor( p.getCol(), p.getRow(),p.getColor());
+        int cellSize = engine.getCellSize();
+        int row = p.getRow() * cellSize;
+        int col = p.getCol() * cellSize;
+        gc.setFill(p.getColor());
+        gc.fillRect(col, row, cellSize, cellSize);
+        //pw.setColor(p.getOldCol(), p.getOldRow(), Color.BLACK); // set the previous spot back to black.
+        //pw.setColor( p.getCol(), p.getRow(),p.getColor());
     }
 
     public double getBrushSize() {
@@ -200,8 +217,8 @@ public class Display extends Application {
         @Override
         public void handle(MouseEvent mouseEvent) {
             // Set the center to the mouse.
-            int col = (int)(mouseEvent.getX() -  brushSize);
             int row = (int)(mouseEvent.getY() -  brushSize);
+            int col = (int)(mouseEvent.getX() -  brushSize);
             System.out.println("drawing at x:" + col + " y:" + row);
             engine.drawToGrid(row, col, particleType);
         }
